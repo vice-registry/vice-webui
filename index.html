@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>ViCE Image Registry</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.lime-deep_orange.min.css" /> 
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">Home</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="demo-avatar-dropdown">
+          <span>hello@example.com</span>
+          <div class="mdl-layout-spacer"></div>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+          <li class="mdl-menu__item">Profile</li>
+          <li class="mdl-menu__item">Settings</li>
+          <li class="mdl-menu__item">Logout</li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="mdl-layout__drawer">
+      <header>
+        <img src="imgs/logo.png" style="width:100%;">
+      </header>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="index.html"><i class="material-icons" role="presentation">home</i>Home</a>
+        <a class="mdl-navigation__link" href="images.html"><i class="material-icons" role="presentation">photo</i>Images</a>
+        <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">computer</i>Environment</a>
+        <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">cloud</i>Deployment</a>
+        <div class="mdl-layout-spacer"></div>
+        <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+      </nav>
+    </div>
+
+    <main class="mdl-layout__content">
+      <div class="mdl-grid">
+        <div class="mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+
+          <div class="mdl-card__title mdl-card--expand">
+            <h1 class="mdl-card__title-text">Welcome to VICE Registry</h1>
+          </div>
+          <div class="mdl-card__supporting-text">
+            The image registry that allows to share images of Virtual environments across platforms.
+            <br/> To start right away, please choose one of the following next steps.
+          </div>
+        </div>
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col">
+          <div class="mdl-card__title mdl-card--expand mdl-color--lime-600">
+            <h2 class="mdl-card__title-text">Explore Images</h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col">
+              <i class="material-icons">find_in_page</i>
+            </div>
+            <div class="mdl-cell mdl-cell--10-col">
+              Explore the images stored in the ViCE registry. 
+              For public images, no registration is required to browse
+              and explore available images.
+            </div>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Explore images</a>
+          </div>
+        </div>
+
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col">
+          <div class="mdl-card__title mdl-card--expand mdl-color--lime-600">
+            <h2 class="mdl-card__title-text">Register</h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col">
+              <i class="material-icons">person_add</i>
+            </div>
+            <div class="mdl-cell mdl-cell--10-col">
+              To use the full feature set of the ViCE registry, please
+              register an account. Registered users can deploy and import images.
+            </div>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Register now</a>
+          </div>
+        </div>
+
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col">
+          <div class="mdl-card__title mdl-card--expand mdl-color--lime-600">
+            <h2 class="mdl-card__title-text">About ViCE</h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col">
+              <i class="material-icons">live_help</i>
+            </div>
+            <div class="mdl-cell mdl-cell--10-col">
+              ViCE is a national project with universities in the federal state
+              of Baden-W&uuml;rttemberg, Germany, in the field of
+              research data management.
+            </div>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Read more</a>
+          </div>
+        </div>
+
+        <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--6-col">
+          <div class="mdl-card__title mdl-card--expand mdl-color--lime-600">
+            <h2 class="mdl-card__title-text">Contact &amp; Feedback</h2>
+          </div>
+          <div class="mdl-card__supporting-text mdl-grid">
+            <div class="mdl-cell mdl-cell--2-col">
+              <i class="material-icons">comment</i>
+            </div>
+            <div class="mdl-cell mdl-cell--10-col">
+              For questions, comments and feedback, please contact us.
+              We're happy to learn about your experiences with the ViCE registry.
+            </div>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect">Contact information</a>
+          </div>
+
+        </div>
+
+    </main>
+    </div>
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+
+</html>

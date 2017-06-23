@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <title>ViCE Image Registry</title>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.lime-deep_orange.min.css" />
+</head>
+
+<body>
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
+
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <span class="mdl-layout-title">Images</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="demo-avatar-dropdown">
+          <span>hello@example.com</span>
+          <div class="mdl-layout-spacer"></div>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            <i class="material-icons">more_vert</i>
+          </button>
+        <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="hdrbtn">
+          <li class="mdl-menu__item">Profile</li>
+          <li class="mdl-menu__item">Settings</li>
+          <li class="mdl-menu__item">Logout</li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="mdl-layout__drawer">
+      <header>
+        <img src="imgs/logo.png" style="width:100%;">
+      </header>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="index.html"><i class="material-icons" role="presentation">home</i>Home</a>
+        <a class="mdl-navigation__link" href="images.html"><i class="material-icons" role="presentation">photo</i>Images</a>
+        <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">computer</i>Environment</a>
+        <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">cloud</i>Deployment</a>
+        <div class="mdl-layout-spacer"></div>
+        <a class="mdl-navigation__link" href=""><i class="material-icons" role="presentation">help_outline</i><span class="visuallyhidden">Help</span></a>
+      </nav>
+    </div>
+
+    <main class="mdl-layout__content">
+
+      <div class="mdl-grid">
+
+        <div class="mdl-cell mdl-cell--12-col mdl-shadow--2dp">
+
+          <form action="#" class="mdl-grid">
+
+            <div class="mdl-cell mdl-cell--1-col" for="search">
+              <i class="material-icons">search</i>
+            </div>
+
+            <div class="mdl-textfield mdl-js-textfield mdl-cell--5-col">
+              <input class="mdl-textfield__input" type="text" id="search" />
+              <label class="mdl-textfield__label" for="search">Search ...</label>
+            </div>
+
+            <div class="mdl-cell--3-col mdl-layout__header-row">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="filter-origin" />
+                <label class="mdl-textfield__label" for="filter-origin">Origin</label>
+              </div>
+
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="filter-origin-button">
+                <i class="material-icons">arrow_drop_down</i>
+              </button>              
+              <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="filter-origin-button">
+                <li class="mdl-menu__item">OpenStack</li>
+                <li class="mdl-menu__item">bwLehrpool</li>
+                <li class="mdl-menu__item">Docker</li>
+              </ul>
+            </div>
+
+            <div class="mdl-cell--3-col mdl-layout__header-row">
+              <div class="mdl-textfield mdl-js-textfield">
+                <input class="mdl-textfield__input" type="text" id="filter-type" />
+                <label class="mdl-textfield__label" for="filter-type">Type</label>
+              </div>
+
+              <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="filter-type-button">
+                <i class="material-icons">arrow_drop_down</i>
+              </button>              
+              <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="filter-type-button">
+                <li class="mdl-menu__item">Interactive</li>
+                <li class="mdl-menu__item">Service</li>
+                <li class="mdl-menu__item">Job</li>
+              </ul>
+            </div>          
+          </form>
+        </div>
+
+        <table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Image Title</th>
+              <th>Origin</th>
+              <th>Type</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric">Ubuntu 16.04 LTS Server</td>
+              <td>OpenStack, bwCloud</td>
+              <td>Interactive, SSH</td>
+              <td>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="image-menu_img1">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="image-menu_img1">
+                  <li class="mdl-menu__item">Details</li>
+                  <li class="mdl-menu__item">Deploy</li>
+                </ul>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric">ViCE-API v0.1</td>
+              <td>Docker Image, Docker Hub</td>
+              <td>Service</td>
+              <td>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="image-menu_img2">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="image-menu_img2">
+                  <li class="mdl-menu__item">Details</li>
+                  <li class="mdl-menu__item">Deploy</li>
+                </ul>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric">SAPS Presence Course 2</td>
+              <td>VM Image, bwLehrpool</td>
+              <td>Interactive</td>
+              <td>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="image-menu_img3">
+                  <i class="material-icons">more_vert</i>
+                </button>
+                <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="image-menu_img3">
+                  <li class="mdl-menu__item">Details</li>
+                  <li class="mdl-menu__item">Deploy</li>
+                </ul>
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+    </main>
+
+  </div>
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+</body>
+
+</html>
