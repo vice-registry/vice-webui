@@ -1,46 +1,40 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{title}}!
-  </h1>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" opened="true" class="example-sidenav">
+    <mat-list>
+      <mat-list-item>
+        <img src="assets/logo.png" style="width:100px;">
+      </mat-list-item>
+      <mat-list-item>
+        <a routerLink="/dashboard">Home</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a routerLink="/images">Images</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a routerLink="/environments">Environments</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a routerLink="/deployments">Deployments</a>
+      </mat-list-item>
+      <mat-list-item>
+        <a routerLink="/runtimestats">Runtimestats</a>
+      </mat-list-item>            
+    </mat-list>
+  </mat-sidenav>
 
-  <!--
-    <ul class="images">
-    <li *ngFor="let image of images" (click)="onSelect(image)">
-      <span class="badge">{{image.id}}</span> environmentReference: {{image.environmentReference}}
-    </li>
-  </ul>
-  -->
+  <div class="example-sidenav-content">
 
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span>Images</span>
+        <span class="example-spacer"></span>
+        <span>Account Area</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
 
-  <div class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="imagesDataSource">
+    <div class="example-container mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
 
-      <!--- Note that these columns can be defined in any order.
-          The actual rendered columns are set as a property on the row definition" -->
-
-      <!-- Position Column -->
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-      </ng-container>
-
-      <!-- Name Column -->
-      <ng-container matColumnDef="environmentReference">
-        <mat-header-cell *matHeaderCellDef> reference </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.environmentReference}} </mat-cell>
-      </ng-container>
-
-      <!-- Weight Column -->
-      <ng-container matColumnDef="imported">
-        <mat-header-cell *matHeaderCellDef> imported </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.imported}} </mat-cell>
-      </ng-container>
-
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
   </div>
-
-
-</div>
+</mat-sidenav-container>

@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Image } from './models';
+import { Environment } from './models';
 
 
 const headerDict = {
@@ -12,13 +12,13 @@ const headerDict = {
   'Access-Control-Allow-Headers': 'Content-Type',
 }
 
-const headerObj = {                                                                                                                                                                                 
-  headers: new Headers(headerDict), 
+const headerObj = {
+  headers: new Headers(headerDict),
 };
 
 @Injectable()
-export class ImageService {
-    private apiUrl = 'http://localhost:8080/v1/images/';
+export class EnvironmentService {
+    private apiUrl = 'http://localhost:8080/v1/environments/';
     private headers = new Headers({
         'Accept': 'application/json',
         'Authorization': 'Basic YWRtaW46YWRtaW4='
@@ -26,11 +26,11 @@ export class ImageService {
 
     constructor(private http: Http) { }
     
-    getList(): Promise<Image[]> {
+    getList(): Promise<Environment[]> {
         return this.http.get(this.apiUrl, {headers: this.headers})
                 .toPromise()
                 .then((response) => {
-                    return response.json() as Image[]
+                    return response.json() as Environment[]
                 }).catch(this.handleError);
     }
     

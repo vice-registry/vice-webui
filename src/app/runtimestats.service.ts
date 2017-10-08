@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Image } from './models';
+import { Runtimestats } from './models';
 
 
 const headerDict = {
@@ -17,8 +17,8 @@ const headerObj = {
 };
 
 @Injectable()
-export class ImageService {
-    private apiUrl = 'http://localhost:8080/v1/images/';
+export class RuntimestatsService {
+    private apiUrl = 'http://localhost:8080/v1/runtimestats';
     private headers = new Headers({
         'Accept': 'application/json',
         'Authorization': 'Basic YWRtaW46YWRtaW4='
@@ -26,11 +26,11 @@ export class ImageService {
 
     constructor(private http: Http) { }
     
-    getList(): Promise<Image[]> {
+    get(): Promise<Runtimestats[]> {
         return this.http.get(this.apiUrl, {headers: this.headers})
                 .toPromise()
                 .then((response) => {
-                    return response.json() as Image[]
+                    return response.json() as Runtimestats[]
                 }).catch(this.handleError);
     }
     
