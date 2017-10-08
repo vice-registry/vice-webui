@@ -1,0 +1,21 @@
+# Base runtime 
+image: docker:latest
+# Docker as a service
+services:
+    - docker:dind
+# Stages declaration (add names as required)
+stages:
+    - build
+
+# Pack stage (docker build)
+build:
+    stage: build
+    script:
+        - cat /etc/*release*
+        - npm install -g @angular/cli
+        - npm install --save @angular/material @angular/cdk
+        - npm install --save @angular/animations
+        - ng build
+        - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+        - docker build -t $CI_REGISTRY_IMAGE/webfront:latest .
+        - docker push $CI_REGISTRY_IMAGE/webfront:latest
