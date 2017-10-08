@@ -11,8 +11,7 @@ stages:
 build:
     stage: build
     script:
-        - cat /etc/*release*
-        - apk add --update nodejs
+        - apk add --update nodejs-npm
         - npm install -g @angular/cli
         - npm install --save @angular/material @angular/cdk
         - npm install --save @angular/animations
