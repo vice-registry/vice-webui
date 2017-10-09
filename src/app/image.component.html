@@ -1,21 +1,27 @@
-<mat-table #table [dataSource]="imagesDataSource">
+<mat-card>
+    Suche hier
+</mat-card>
 
-    <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
+<mat-card>
+    <mat-table #table [dataSource]="imagesDataSource">
 
-    <ng-container matColumnDef="environmentReference">
-        <mat-header-cell *matHeaderCellDef> reference </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.environmentReference}} </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        </ng-container>
 
-    <ng-container matColumnDef="imported">
-        <mat-header-cell *matHeaderCellDef> imported </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.imported}} </mat-cell>
-    </ng-container>
+        <ng-container matColumnDef="environmentReference">
+            <mat-header-cell *matHeaderCellDef> reference </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.environmentReference}} </mat-cell>
+        </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    
-</mat-table>
+        <ng-container matColumnDef="imported">
+            <mat-header-cell *matHeaderCellDef> imported </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.imported}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+    </mat-table>
+</mat-card>
