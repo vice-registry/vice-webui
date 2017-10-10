@@ -20,3 +20,8 @@ mat-sidenav-container {
 .mat-drawer-container, .mat-drawer{
   background-color: transparent;
 }
+
+.active {
+  font-style: italic;
+  background-color: rgba(0,0,0,0.04);
+}

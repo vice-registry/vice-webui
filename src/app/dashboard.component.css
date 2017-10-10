@@ -1,3 +1,8 @@
 mat-card {
     /*height: 90%;*/
+    width: 100%;
+}
+
+mat-card-content{
+    height: 60px;
 }

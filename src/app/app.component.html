@@ -3,23 +3,23 @@
     <mat-card>
       <img src="assets/logo.png" style="width:90%; margin: 10px;">
       <mat-nav-list>
-        <a mat-list-item routerLink="/dashboard">
+        <a mat-list-item routerLinkActive="active" routerLink="/dashboard">
           <mat-icon mat-list-icon>home</mat-icon>
           <h4>Home</h4>
         </a>
-        <a mat-list-item routerLink="/images">
+        <a mat-list-item routerLinkActive="active" routerLink="/images">
           <mat-icon mat-list-icon>photo</mat-icon>
           <h4>Images</h4>
         </a>
-        <a mat-list-item routerLink="/environments">
+        <a mat-list-item routerLinkActive="active" routerLink="/environments">
           <mat-icon mat-list-icon>computer</mat-icon>
           <h4>Environments</h4>
         </a>
-        <a mat-list-item routerLink="/deployments">
+        <a mat-list-item routerLinkActive="active" routerLink="/deployments">
           <mat-icon mat-list-icon>cloud</mat-icon>
           <h4>Deployments</h4>
         </a>
-        <a mat-list-item routerLink="/runtimestats">
+        <a mat-list-item routerLinkActive="active" routerLink="/runtimestats">
           <mat-icon mat-list-icon>home</mat-icon>
           <h4>Runtimestats</h4>
         </a>
@@ -29,7 +29,7 @@
 
   <div class="main-content">
 
-    <!--
+
       <mat-toolbar color="primary">
       <mat-toolbar-row>
         <span>Images</span>
@@ -37,7 +37,7 @@
         <span>Account Area</span>
       </mat-toolbar-row>
     </mat-toolbar>
-    -->
+
 
     <router-outlet></router-outlet>
   </div>
