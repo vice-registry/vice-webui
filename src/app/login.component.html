@@ -1,0 +1,58 @@
+<mat-grid-list cols="2">
+
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <h1>Login</h1>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form #loginForm="ngForm">
+                    <div class="formcard">
+                        <mat-form-field>
+                            <input matInput name="username" placeholder="Username" [(ngModel)]="loginCredentials.username" required>
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="loginCredentials.password"
+                                required>
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </mat-form-field>
+                        <button type="submit" mat-raised-button color="primary" (click)="login()">LOGIN</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <h1>Register</h1>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <form #registerForm="ngForm">
+                    <div class="formcard">
+                        <mat-form-field>
+                            <input matInput name="username" required placeholder="Username" [(ngModel)]="registerUser.username">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput name="email" required placeholder="e-Mail address" [(ngModel)]="registerUser.email">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput name="fullname" required placeholder="Full name" [(ngModel)]="registerUser.fullname">
+                        </mat-form-field>
+                        <mat-form-field>
+                            <input matInput name="password" required placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="registerUser.password">
+                            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+                        </mat-form-field>
+                        <button mat-raised-button color="primary" (click)="register()">CREATE ACCOUNT</button>
+                    </div>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+</mat-grid-list>

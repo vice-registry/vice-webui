@@ -38,6 +38,7 @@ import {
 } from '@angular/material';
 import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
+import { GravatarModule } from 'ng2-gravatar-directive';
 
 import { AppComponent } from './app.component';
 import { ImageComponent } from './image.component';
@@ -45,6 +46,8 @@ import { EnvironmentComponent } from './environment.component';
 import { RuntimestatsComponent } from './runtimestats.component';
 import { DeploymentComponent } from './deployment.component';
 import { DashboardComponent } from './dashboard.component';
+import { LoginComponent } from './login.component';
+import { AboutComponent } from './about.component';
 
 import { EnvironmentService } from './environment.service';
 import { ImageService } from './image.service';
@@ -58,12 +61,16 @@ import { RuntimestatsService } from './runtimestats.service';
     ImageComponent,
     EnvironmentComponent,
     DeploymentComponent,
-    RuntimestatsComponent
+    RuntimestatsComponent,
+    LoginComponent,
+    AboutComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     HttpModule,
     AppRoutingModule,
+    GravatarModule,
     BrowserAnimationsModule,
     MatAutocompleteModule,
     MatButtonModule,

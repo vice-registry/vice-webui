@@ -20,3 +20,11 @@ export class Runtimestats {
 	storePending: number;
 	storeWorker: number;
 }
+
+export class User {
+	id: string;
+	username: string;
+	fullname: string;
+	email: string;
+	password: string;
+}

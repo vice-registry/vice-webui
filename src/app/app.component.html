@@ -1,3 +1,14 @@
+<mat-toolbar color="primary">
+  <span class="example-spacer"></span>
+  <span *ngIf="user">
+    <img gravatar [email]="usermail" [size]="32">
+    Christopher Hauser
+  </span>
+  <span *ngIf="!user">
+    <a routerLink="/login" mat-raised-button color="accent">LOGIN or REGISTER</a>
+  </span>
+</mat-toolbar>
+
 <mat-sidenav-container>
   <mat-sidenav id="navbar" disableClose mode="side" opened="true">
     <mat-card>
@@ -11,16 +22,16 @@
           <mat-icon mat-list-icon>photo</mat-icon>
           <h4>Images</h4>
         </a>
-        <a mat-list-item routerLinkActive="active" routerLink="/environments">
+        <a mat-list-item routerLinkActive="active" routerLink="/environments" *ngIf="user">
           <mat-icon mat-list-icon>computer</mat-icon>
           <h4>Environments</h4>
         </a>
-        <a mat-list-item routerLinkActive="active" routerLink="/deployments">
+        <a mat-list-item routerLinkActive="active" routerLink="/deployments" *ngIf="user">
           <mat-icon mat-list-icon>cloud</mat-icon>
           <h4>Deployments</h4>
         </a>
-        <a mat-list-item routerLinkActive="active" routerLink="/runtimestats">
-          <mat-icon mat-list-icon>home</mat-icon>
+        <a mat-list-item routerLinkActive="active" routerLink="/runtimestats" *ngIf="user">
+          <mat-icon mat-list-icon></mat-icon>
           <h4>Runtimestats</h4>
         </a>
       </mat-nav-list>
@@ -28,13 +39,6 @@
   </mat-sidenav>
 
   <div class="main-content">
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>
-        <span class="example-spacer"></span>
-        <span>Account Area</span>
-      </mat-toolbar-row>
-    </mat-toolbar>
-
     <router-outlet></router-outlet>
   </div>
 </mat-sidenav-container>

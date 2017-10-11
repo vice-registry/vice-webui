@@ -1,0 +1,12 @@
+mat-card {
+    width: 100%;
+}
+
+.formcard {
+  display: flex;
+  flex-direction: column;
+}
+
+.formcard > * {
+  width: 100%;
+}
