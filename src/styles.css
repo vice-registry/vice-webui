@@ -1,16 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-html, body, app-root {
-  margin: 0 auto;
+html, body{
+  margin: 0;
   width: 100%;
-  max-width: 1600px;
   height: 100%;
 }
 
 body {
   background-color:rgba(122, 153, 172, 0.3);
+
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-attachment: scroll;		
+  background-size: cover;
+  background-image: url('https://www.hyggl.com/background.jpg');	  
 }
+
 
 mat-card {
   margin: 10px;

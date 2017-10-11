@@ -1,3 +1,4 @@
+<div id="main-content">
 <mat-toolbar color="primary">
   <span class="example-spacer"></span>
   <span *ngIf="user">
@@ -12,7 +13,7 @@
 <mat-sidenav-container>
   <mat-sidenav id="navbar" disableClose mode="side" opened="true">
     <mat-card>
-      <img src="assets/logo.png" style="width:90%; margin: 10px;">
+      <a routerLink="/"><img src="assets/logo.png" style="width:90%; margin: 10px;"></a>
       <mat-nav-list>
         <a mat-list-item routerLinkActive="active" routerLink="/dashboard">
           <mat-icon mat-list-icon>home</mat-icon>
@@ -42,3 +43,4 @@
     <router-outlet></router-outlet>
   </div>
 </mat-sidenav-container>
+</div>

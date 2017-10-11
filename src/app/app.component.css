@@ -26,3 +26,8 @@ mat-sidenav-container {
   font-style: italic;
   background-color: rgba(0,0,0,0.04);
 }
+
+#main-content {
+    max-width: 1600px;
+    margin: 0 auto;
+}
