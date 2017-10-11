@@ -11,39 +11,23 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Component({
     selector: 'runtimestats',
+    styleUrls: ['./runtimestats.component.css'],
     templateUrl: './runtimestats.component.html',
 })
 
 export class RuntimestatsComponent implements OnInit {
 
     displayedColumns = ['id'];
-    runtimestatsDataSource;
+    runtimestats: Runtimestats;
 
     constructor(private runtimestatsService: RuntimestatsService) { }
 
     ngOnInit(): void {
-        this.runtimestatsDataSource = new RuntimestatsDataSource(this.runtimestatsService);
-    }
-}
-
-export class RuntimestatsDataSource extends DataSource<Runtimestats> {
-
-    constructor(private runtimestatsService: RuntimestatsService) {
-        super();
+        this.updateRuntimestats();
     }
 
-    subject: BehaviorSubject<Runtimestats[]> = new BehaviorSubject<Runtimestats[]>([]);
-
-    connect(): Observable<Runtimestats[]> {
-        if (!this.subject.isStopped)
-            this.runtimestatsService.get().then(res => {
-                this.subject.next(res)
-            });
-        return Observable.merge(this.subject);
-    }
-
-    disconnect() {
-        this.subject.complete();
-        this.subject.observers = [];
+    updateRuntimestats(): void{
+        this.runtimestatsService.get().then(runtimestats => this.runtimestats =
+        runtimestats);
     }
 }

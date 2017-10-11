@@ -26,11 +26,12 @@ export class RuntimestatsService {
 
     constructor(private http: Http) { }
     
-    get(): Promise<Runtimestats[]> {
+    get(): Promise<Runtimestats> {
         return this.http.get(this.apiUrl, {headers: this.headers})
                 .toPromise()
                 .then((response) => {
-                    return response.json() as Runtimestats[]
+                    console.info(response.json());
+                    return response.json() as Runtimestats
                 }).catch(this.handleError);
     }
     

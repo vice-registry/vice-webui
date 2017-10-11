@@ -1,2 +1,58 @@
+<mat-grid-list cols="2" rowHeight="200px">
 
-print runtimestats
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <h1>Import</h1>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div>Worker: {{runtimestats?.importWorker || 0 }}</div>
+                <div>Pending: {{runtimestats?.importsPending || 0 }}</div>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <h1>Export</h1>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div>Worker: {{runtimestats?.exportWorker || 0 }}</div>
+                <div>Pending: {{runtimestats?.exportsPending || 0 }}</div>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <h1>Store</h1>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div>Worker: {{runtimestats?.storeWorker || 0 }}</div>
+                <div>Pending: {{runtimestats?.storePending || 0 }}</div>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>
+                    <h1>Version</h1>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div>Server: unknown</div>
+                <div>Client: unknown</div>
+            </mat-card-content>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>

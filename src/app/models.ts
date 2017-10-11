@@ -13,5 +13,10 @@ export class Deployment {
 }
 
 export class Runtimestats {
-  storePending: number;
+	exportWorker: number;
+	exportsPending: number;
+	importWorker: number;
+	importsPending: number;
+	storePending: number;
+	storeWorker: number;
 }
