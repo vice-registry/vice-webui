@@ -53,6 +53,8 @@ import { EnvironmentService } from './environment.service';
 import { ImageService } from './image.service';
 import { DeploymentService } from './deployment.service';
 import { RuntimestatsService } from './runtimestats.service';
+import { LoginService } from './login.service';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -108,7 +110,9 @@ import { RuntimestatsService } from './runtimestats.service';
     ImageService,
     EnvironmentService,
     DeploymentService,
-    RuntimestatsService
+    RuntimestatsService,
+    LoginService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

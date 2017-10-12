@@ -2,8 +2,12 @@
 <mat-toolbar color="primary">
   <span class="example-spacer"></span>
   <span *ngIf="user">
-    <img gravatar [email]="usermail" [size]="32">
-    Christopher Hauser
+    <button mat-button [matMenuTriggerFor]="menu"><img gravatar [email]="user.email" [size]="20"> {{ user.fullname }}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item disabled>Settings</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
+    </mat-menu>
+
   </span>
   <span *ngIf="!user">
     <a routerLink="/login" mat-raised-button color="accent">LOGIN or REGISTER</a>

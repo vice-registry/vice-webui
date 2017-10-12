@@ -18,6 +18,9 @@
                                 required>
                             <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
                         </mat-form-field>
+
+                        <mat-checkbox name="save" [(ngModel)]="storeCredentials">Store credentials </mat-checkbox>
+
                         <button type="submit" mat-raised-button color="primary" (click)="login()">LOGIN</button>
                     </div>
                 </form>

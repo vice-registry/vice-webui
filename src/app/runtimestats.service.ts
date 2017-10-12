@@ -30,7 +30,6 @@ export class RuntimestatsService {
         return this.http.get(this.apiUrl, {headers: this.headers})
                 .toPromise()
                 .then((response) => {
-                    console.info(response.json());
                     return response.json() as Runtimestats
                 }).catch(this.handleError);
     }
