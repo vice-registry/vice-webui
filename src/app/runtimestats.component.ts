@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
+import {MatSnackBar} from '@angular/material';
 import { Runtimestats } from './models';
 import { RuntimestatsService } from './runtimestats.service';
 import 'rxjs/add/operator/toPromise';
@@ -20,14 +21,19 @@ export class RuntimestatsComponent implements OnInit {
     displayedColumns = ['id'];
     runtimestats: Runtimestats;
 
-    constructor(private runtimestatsService: RuntimestatsService) { }
+    constructor(private runtimestatsService: RuntimestatsService, public snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
         this.updateRuntimestats();
     }
 
     updateRuntimestats(): void{
-        this.runtimestatsService.get().then(runtimestats => this.runtimestats =
-        runtimestats);
+        this.runtimestatsService.get().then(
+            runtimestats => this.runtimestats = runtimestats,
+            error => {{  
+                console.info(error);
+                this.snackBar.open("Server Error: " + error, "OK");
+            }}
+        );
     }
 }

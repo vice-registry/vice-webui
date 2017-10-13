@@ -34,5 +34,9 @@ export class UserService {
     return user;
   }
 
+  getBasicAuth(): string{
+    let user = this.remember();
+    return btoa(user.username + ':' + user.password);
+  }
 
 }

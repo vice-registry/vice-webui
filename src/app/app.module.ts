@@ -40,7 +40,7 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { GravatarModule } from 'ng2-gravatar-directive';
 
-import { AppComponent } from './app.component';
+import { AppComponent, SettingsDialog } from './app.component';
 import { ImageComponent } from './image.component';
 import { EnvironmentComponent } from './environment.component';
 import { RuntimestatsComponent } from './runtimestats.component';
@@ -55,10 +55,12 @@ import { DeploymentService } from './deployment.service';
 import { RuntimestatsService } from './runtimestats.service';
 import { LoginService } from './login.service';
 import { UserService } from './user.service';
+import { SettingsService } from './settings.service';
 
 @NgModule({
   declarations: [
     AppComponent,
+    SettingsDialog,
     DashboardComponent,
     ImageComponent,
     EnvironmentComponent,
@@ -112,8 +114,10 @@ import { UserService } from './user.service';
     DeploymentService,
     RuntimestatsService,
     LoginService,
-    UserService
+    UserService,
+    SettingsService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SettingsDialog]
 })
 export class AppModule { }

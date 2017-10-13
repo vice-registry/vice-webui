@@ -1,50 +1,57 @@
 <div id="main-content">
-<mat-toolbar color="primary">
-  <span class="example-spacer"></span>
-  <span *ngIf="user">
+  <mat-toolbar color="primary">
+    <span class="example-spacer"></span>
+    <span *ngIf="!apiurl">
+      <mat-chip-list>
+        <mat-chip color="primary" selected="true" (click)="openSettings()"><mat-icon>warning</mat-icon> Server configuration missing!</mat-chip>
+      </mat-chip-list>
+    </span>
+    <span>
+    <button mat-button (click)="openSettings()"><mat-icon>settings</mat-icon> Settings</button>
+  </span>
+    <span *ngIf="user">
     <button mat-button [matMenuTriggerFor]="menu"><img gravatar [email]="user.email" [size]="20"> {{ user.fullname }}</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item disabled>Settings</button>
       <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
-
   </span>
-  <span *ngIf="!user">
-    <a routerLink="/login" mat-raised-button color="accent">LOGIN or REGISTER</a>
+    <span *ngIf="!user">
+    <a routerLink="/login" mat-raised-button color="accent"><mat-icon>account_circle</mat-icon> LOGIN or REGISTER</a>
   </span>
-</mat-toolbar>
+  </mat-toolbar>
 
-<mat-sidenav-container>
-  <mat-sidenav id="navbar" disableClose mode="side" opened="true">
-    <mat-card>
-      <a routerLink="/"><img src="assets/logo.png" style="width:90%; margin: 10px;"></a>
-      <mat-nav-list>
-        <a mat-list-item routerLinkActive="active" routerLink="/dashboard">
-          <mat-icon mat-list-icon>home</mat-icon>
-          <h4>Home</h4>
-        </a>
-        <a mat-list-item routerLinkActive="active" routerLink="/images">
-          <mat-icon mat-list-icon>photo</mat-icon>
-          <h4>Images</h4>
-        </a>
-        <a mat-list-item routerLinkActive="active" routerLink="/environments" *ngIf="user">
-          <mat-icon mat-list-icon>computer</mat-icon>
-          <h4>Environments</h4>
-        </a>
-        <a mat-list-item routerLinkActive="active" routerLink="/deployments" *ngIf="user">
-          <mat-icon mat-list-icon>cloud</mat-icon>
-          <h4>Deployments</h4>
-        </a>
-        <a mat-list-item routerLinkActive="active" routerLink="/runtimestats" *ngIf="user">
-          <mat-icon mat-list-icon></mat-icon>
-          <h4>Runtimestats</h4>
-        </a>
-      </mat-nav-list>
-    </mat-card>
-  </mat-sidenav>
+  <mat-sidenav-container>
+    <mat-sidenav id="navbar" disableClose mode="side" opened="true">
+      <mat-card>
+        <a routerLink="/"><img src="assets/logo.png" style="width:90%; margin: 10px;"></a>
+        <mat-nav-list>
+          <a mat-list-item routerLinkActive="active" routerLink="/dashboard">
+            <mat-icon mat-list-icon>home</mat-icon>
+            <h4>Home</h4>
+          </a>
+          <a mat-list-item routerLinkActive="active" routerLink="/images">
+            <mat-icon mat-list-icon>photo</mat-icon>
+            <h4>Images</h4>
+          </a>
+          <a mat-list-item routerLinkActive="active" routerLink="/environments" *ngIf="user">
+            <mat-icon mat-list-icon>computer</mat-icon>
+            <h4>Environments</h4>
+          </a>
+          <a mat-list-item routerLinkActive="active" routerLink="/deployments" *ngIf="user">
+            <mat-icon mat-list-icon>cloud</mat-icon>
+            <h4>Deployments</h4>
+          </a>
+          <a mat-list-item routerLinkActive="active" routerLink="/runtimestats" *ngIf="user">
+            <mat-icon mat-list-icon></mat-icon>
+            <h4>Runtimestats</h4>
+          </a>
+        </mat-nav-list>
+      </mat-card>
+    </mat-sidenav>
 
-  <div class="main-content">
-    <router-outlet></router-outlet>
-  </div>
-</mat-sidenav-container>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-container>
 </div>

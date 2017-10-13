@@ -4,7 +4,8 @@ import { Headers, Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 import { Image } from './models';
-
+import { SettingsService } from './settings.service';
+import { UserService } from './user.service';
 
 const headerDict = {
   'Content-Type': 'application/json',
@@ -18,16 +19,15 @@ const headerObj = {
 
 @Injectable()
 export class ImageService {
-    private apiUrl = 'http://localhost:8080/v1/images/';
-    private headers = new Headers({
-        'Accept': 'application/json',
-        'Authorization': 'Basic YWRtaW46YWRtaW4='
-    });
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private settingsService: SettingsService, private userService: UserService) { }
     
     getList(): Promise<Image[]> {
-        return this.http.get(this.apiUrl, {headers: this.headers})
+        let headers = new Headers({
+            'Accept': 'application/json',
+            'Authorization': 'Basic ' + this.userService.getBasicAuth()
+        });
+        return this.http.get(this.settingsService.getApiurl()+'/images', {headers: headers})
                 .toPromise()
                 .then((response) => {
                     return response.json() as Image[]
