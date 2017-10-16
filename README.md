@@ -1,4 +1,4 @@
-# ViceWebui
+# ViceWebui [![Build Status](https://travis-ci.org/vice-registry/vice-webui.svg?branch=master)](https://travis-ci.org/vice-registry/vice-webui)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.5.
 
