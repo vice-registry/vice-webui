@@ -2,26 +2,19 @@ sudo: true
 dist: trusty
 language: node_js
 node_js:
-  - "iojs"
   - "7"
 
-jobs:
-  include:
-    - stage: compile angular2 app
-      script: 
-      - npm install -g @angular/cli
-      - npm install
-      - ng build
-    - stage: build docker image
-      script:
-      - npm install -g @angular/cli
-      - npm install
-      - ng build
-      - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-      - docker build -t vice-webui:latest .
-      - docker tag vice-webui:latest viceregistry/vice-webui:latest
-      - docker images
-      - docker push viceregistry/vice-webui:latest
+before_script:
+- npm install -g @angular/cli
+- npm install
+
+script:
+- ng build
+- docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+- docker build -t vice-webui:latest .
+- docker tag vice-webui:latest viceregistry/vice-webui:latest
+- docker images
+- docker push viceregistry/vice-webui:latest
 
 deploy:
   provider: pages
