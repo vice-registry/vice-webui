@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { Environment } from './models';
 import { EnvironmentService } from './environment.service';
@@ -19,16 +20,16 @@ export class EnvironmentComponent implements OnInit {
     displayedColumns = ['id'];
     environmentsDataSource;
 
-    constructor(private environmentService: EnvironmentService) { }
+    constructor(private environmentService: EnvironmentService, public snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
-        this.environmentsDataSource = new EnvironmentDataSource(this.environmentService);
+        this.environmentsDataSource = new EnvironmentDataSource(this.environmentService, this.snackBar);
     }
 }
 
 export class EnvironmentDataSource extends DataSource<Environment> {
 
-    constructor(private environmentService: EnvironmentService) {
+    constructor(private environmentService: EnvironmentService, public snackBar: MatSnackBar) {
         super();
     }
 
@@ -38,6 +39,10 @@ export class EnvironmentDataSource extends DataSource<Environment> {
         if (!this.subject.isStopped)
             this.environmentService.getList().then(res => {
                 this.subject.next(res)
+            }, error => {
+                {
+                    this.snackBar.open("Server Error: " + error, "OK");
+                }
             });
         return Observable.merge(this.subject);
     }

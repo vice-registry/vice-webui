@@ -30,8 +30,7 @@ export class RuntimestatsComponent implements OnInit {
     updateRuntimestats(): void{
         this.runtimestatsService.get().then(
             runtimestats => this.runtimestats = runtimestats,
-            error => {{  
-                console.info(error);
+            error => {{
                 this.snackBar.open("Server Error: " + error, "OK");
             }}
         );

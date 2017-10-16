@@ -27,7 +27,7 @@ export class RuntimestatsService {
             'Accept': 'application/json',
             'Authorization': 'Basic ' + this.userService.getBasicAuth()
         });        
-        return this.http.get(this.settingsService.getApiurl()+'/runtimestatsX', {headers: headers})
+        return this.http.get(this.settingsService.getApiurl()+'/runtimestats', {headers: headers})
                 .toPromise()
                 .then((response) => {
                     return response.json() as Runtimestats

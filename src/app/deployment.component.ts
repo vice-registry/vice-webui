@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
 import { Deployment } from './models';
 import { DeploymentService } from './deployment.service';
@@ -19,16 +20,16 @@ export class DeploymentComponent implements OnInit {
     displayedColumns = ['id'];
     deploymentDataSource;
 
-    constructor(private deploymentService: DeploymentService) { }
+    constructor(private deploymentService: DeploymentService, public snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
-        this.deploymentDataSource = new DeploymentDataSource(this.deploymentService);
+        this.deploymentDataSource = new DeploymentDataSource(this.deploymentService, this.snackBar);
     }
 }
 
 export class DeploymentDataSource extends DataSource<Deployment> {
 
-    constructor(private deploymentService: DeploymentService) {
+    constructor(private deploymentService: DeploymentService, public snackBar: MatSnackBar) {
         super();
     }
 
@@ -38,6 +39,10 @@ export class DeploymentDataSource extends DataSource<Deployment> {
         if (!this.subject.isStopped)
             this.deploymentService.getList().then(res => {
                 this.subject.next(res)
+            }, error => {
+                {
+                    this.snackBar.open("Server Error: " + error, "OK");
+                }
             });
         return Observable.merge(this.subject);
     }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {MatSnackBar} from '@angular/material';
 import { Injectable } from '@angular/core';
 import { Image } from './models';
 import { ImageService } from './image.service';
@@ -19,16 +20,16 @@ export class ImageComponent implements OnInit {
     displayedColumns = ['id', 'environmentReference', 'imported'];
     imagesDataSource;
 
-    constructor(private imageService: ImageService) { }
+    constructor(private imageService: ImageService, public snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
-        this.imagesDataSource = new ImagesDataSource(this.imageService);
+        this.imagesDataSource = new ImagesDataSource(this.imageService, this.snackBar);
     }
 }
 
 export class ImagesDataSource extends DataSource<Image> {
 
-    constructor(private imageService: ImageService) {
+    constructor(private imageService: ImageService,  public snackBar: MatSnackBar) {
         super();
     }
 
@@ -38,6 +39,10 @@ export class ImagesDataSource extends DataSource<Image> {
         if (!this.subject.isStopped)
             this.imageService.getList().then(res => {
                 this.subject.next(res)
+            }, error => {
+                {
+                    this.snackBar.open("Server Error: " + error, "OK");
+                }
             });
         return Observable.merge(this.subject);
     }

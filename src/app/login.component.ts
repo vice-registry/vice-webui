@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { User } from './models';
 import { LoginService } from './login.service';
 import { UserService } from './user.service';
+import {MatSnackBar} from '@angular/material';
 
 export class Credentials {
   username: string;
@@ -24,11 +25,12 @@ export class LoginComponent {
   registerUser: User = new User();
 
   constructor(
-    private loginService: LoginService, 
+    private loginService: LoginService,
     private userService: UserService,
-    private router: Router
-  ) { 
-    
+    private router: Router, 
+    public snackBar: MatSnackBar
+  ) {
+
   }
 
   login(): void {
@@ -38,15 +40,24 @@ export class LoginComponent {
       .then(user => {
         this.userService.change(user, this.storeCredentials);
         this.router.navigate(['/']);
+      },
+      error => {
+        {
+          this.snackBar.open("Server Error: " + error, "OK");
+        }
       });
   }
 
   register(): void {
-    console.info("register!", this.registerUser);
     this.loginService.create(this.registerUser).
       then(user => {
         this.userService.change(user, true);
         this.router.navigate(['/']);
+      },
+      error => {
+        {
+          this.snackBar.open("Server Error: " + error, "OK");
+        }
       });
   }
 
