@@ -9,13 +9,13 @@ before_script:
 - npm install
 
 script:
-- ng build
+- ng build --baseHref /
 - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
 - docker build -t vice-webui:latest .
 - docker tag vice-webui:latest viceregistry/vice-webui:latest
 - docker images
 - docker push viceregistry/vice-webui:latest
-- pwd; ls -lah
+- ng build --baseHref /vice-webui/ # build again with baseref for github pages
 
 deploy:
   provider: pages
