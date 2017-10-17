@@ -1,13 +1,110 @@
 <mat-card>
-    <mat-table #table [dataSource]="environmentsDataSource">
+    Suche hier
+</mat-card>
 
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title *ngIf=!environment.id>
+            <h3>Create Environment</h3>
+        </mat-card-title>
+        <mat-card-title *ngIf=environment.id>
+                <h3>Update Environment {{environment.title}} (ID {{environment.id}})</h3>
+            </mat-card-title>        
+    </mat-card-header>
+    <mat-card-content>
+        <form #createEnvironmentForm="ngForm">
+            <div class="formcard">
+                <div>
+                    <mat-form-field>
+                        <input matInput name="title" placeholder="Title" [(ngModel)]="environment.title">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select name="management" placeholder="Management Layer" [(ngModel)]="environment.managementlayer.software">
+                            <mat-option value="openstack">OpenStack</mat-option>
+                            <mat-option value="bwlehrpool">bwLehrpool</mat-option>
+                            <mat-option value="docker">Docker</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select name="runtime" placeholder="Runtime Technology" [(ngModel)]="environment.runtimetechnology.software">
+                            <mat-option value="kvm">KVM</mat-option>
+                            <mat-option value="esxi">ESXi</mat-option>
+                            <mat-option value="docker">Docker</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <input matInput name="location" placeholder="Location" [(ngModel)]="environment.credentials.location">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput name="username" placeholder="Username" [(ngModel)]="environment.credentials.username">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput name="password" placeholder="Password" [(ngModel)]="environment.credentials.password">
+                    </mat-form-field>
+                </div>
+
+                <div *ngIf="environment.managementlayer.software=='openstack'">
+                    <mat-form-field>
+                        <input matInput name="tenant" placeholder="Tenant" [(ngModel)]="environment.credentials.specifics.tenant">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput name="region" placeholder="Region" value="RegionOne" [(ngModel)]="environment.credentials.specifics.region">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <input matInput name="domain" placeholder="Domain" value="Default" [(ngModel)]="environment.credentials.specifics.domain">
+                    </mat-form-field>
+                </div>
+
+                <button mat-raised-button (click)="clear()" *ngIf=environment.id>CLEAR</button>
+                <button mat-raised-button color="primary" (click)="store()">SUBMIT</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-table #table [dataSource]="environmentsDataSource">
+        <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="managementlayer">
+            <mat-header-cell *matHeaderCellDef> Management Layer </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.managementlayer.software}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="runtimetechnology">
+            <mat-header-cell *matHeaderCellDef> Runtime Technology </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.runtimetechnology.software}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="location">
+            <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.credentials.location}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.credentials.username}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" (click)="edit(element)">
+                    <mat-icon aria-label="edit">mode_edit</mat-icon>
+                </button>                
+                <button mat-icon-button color="warn" (click)="delete(element)">
+                  <mat-icon aria-label="delete">delete_forever</mat-icon>
+                </button>
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-
     </mat-table>
 </mat-card>

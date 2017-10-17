@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
-import { User } from './models';
+import { User } from './api/model/User';
 import { UserService } from './user.service';
 import { SettingsService } from './settings.service';
 import { Router } from '@angular/router';

@@ -1,40 +1,43 @@
 import { Injectable } from '@angular/core';
-import { Subject }    from 'rxjs/Subject';
-import { User } from './models';
- 
+import { Subject } from 'rxjs/Subject';
+import { User } from './api/model/User';
+
 @Injectable()
 export class UserService {
- 
-   private userchangeSource = new Subject<User>();
-   userchange$ = this.userchangeSource.asObservable();
- 
+
+  private userchangeSource = new Subject<User>();
+  userchange$ = this.userchangeSource.asObservable();
+
   // Service message commands
   change(user: User, store: boolean = false) {
-     this.userchangeSource.next(user);
-     if(store){
-      localStorage.setItem('user',JSON.stringify(user))
-     }
+    this.userchangeSource.next(user);
+    if (store) {
+      localStorage.setItem('user', JSON.stringify(user))
+    }
   }
 
-  forget(){
+  forget() {
     localStorage.removeItem('user');
   }
 
-  remember() : User{
+  remember(): User {
     let data = JSON.parse(localStorage.getItem('user'));
-    if(!data){
-  		return undefined;
-  	}
-    var user = new User();
-    user.email = data['email'];
-    user.username = data['username'];
-    user.password = data['password'];
-    user.fullname = data['fullname'];
-    user.id = data['id'];
+    if (!data) {
+      return undefined;
+    }
+
+    var user: User = {
+      email: data['email'],
+      username: data['username'],
+      password: data['password'],
+      fullname: data['fullname'],
+      id: data['id']
+    };
+
     return user;
   }
 
-  getBasicAuth(): string{
+  getBasicAuth(): string {
     let user = this.remember();
     return btoa(user.username + ':' + user.password);
   }

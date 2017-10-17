@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Injectable } from '@angular/core';
 import {MatSnackBar} from '@angular/material';
-import { Runtimestats } from './models';
+import { RuntimeStats } from './api/model/RuntimeStats';
 import { RuntimestatsService } from './runtimestats.service';
 import 'rxjs/add/operator/toPromise';
 import { DataSource } from '@angular/cdk/collections';
@@ -19,7 +19,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 export class RuntimestatsComponent implements OnInit {
 
     displayedColumns = ['id'];
-    runtimestats: Runtimestats;
+    runtimestats: RuntimeStats;
 
     constructor(private runtimestatsService: RuntimestatsService, public snackBar: MatSnackBar) { }
 

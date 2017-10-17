@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { User } from './models';
+import { User } from './api/model/User';
 
 @Injectable()
 export class SettingsService {

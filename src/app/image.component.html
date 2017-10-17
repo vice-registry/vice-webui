@@ -3,21 +3,88 @@
 </mat-card>
 
 <mat-card>
+    <mat-card-header>
+        <mat-card-title *ngIf=!image.id>
+            <h3>Create Image</h3>
+        </mat-card-title>
+        <mat-card-title *ngIf=image.id>
+            <h3>Update Image {{image.title}} (ID {{image.id}})</h3>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form #createImageForm="ngForm">
+            <div class="formcard">
+                <div>
+                    <mat-form-field>
+                        <input matInput name="title" placeholder="Title" [(ngModel)]="image.title">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-select name="originEnvironment" placeholder="Origin Environment" [(ngModel)]="image.originEnvironment">
+                            <mat-option *ngFor="let environment of environments" [value]="environment">
+                                {{ environment.title }}
+                            </mat-option>                            
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field>
+                            <input matInput name="environmentReference" placeholder="Environment Reference" [(ngModel)]="image.environmentReference">
+                    </mat-form-field>                    
+                </div>
+
+                <button mat-raised-button (click)="clear()" *ngIf=image.id>CLEAR</button>
+                <button mat-raised-button color="primary" (click)="store()">SUBMIT</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
     <mat-table #table [dataSource]="imagesDataSource">
 
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="environmentReference">
-            <mat-header-cell *matHeaderCellDef> reference </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef> Reference ID </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.environmentReference}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="origin">
+            <mat-header-cell *matHeaderCellDef> Origin </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.originEnvironment.title}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="managementlayer">
+            <mat-header-cell *matHeaderCellDef> Management Layer </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.originEnvironment.managementlayer.software}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="runtimetechnology">
+            <mat-header-cell *matHeaderCellDef> Runtime Technology </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.originEnvironment.runtimetechnology.software}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="imported">
             <mat-header-cell *matHeaderCellDef> imported </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.imported}} </mat-cell>
+            <mat-cell *matCellDef="let element">
+                <mat-checkbox checked="{{element.imported}}" disabled="disabled"></mat-checkbox>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" (click)="upload(element)">
+                        <mat-icon aria-label="upload">backup</mat-icon>
+                    </button>
+                <button mat-icon-button color="primary" (click)="edit(element)">
+                        <mat-icon aria-label="edit">mode_edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="delete(element)">
+                      <mat-icon aria-label="delete">delete_forever</mat-icon>
+                </button>
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

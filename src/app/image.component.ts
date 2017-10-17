@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MatSnackBar} from '@angular/material';
 import { Injectable } from '@angular/core';
-import { Image } from './models';
+import { Image } from './api/model/Image';
+import { Environment } from './api/model/Environment';
+import { EnvironmentService } from './environment.service';
 import { ImageService } from './image.service';
 import 'rxjs/add/operator/toPromise';
 import { DataSource } from '@angular/cdk/collections';
@@ -17,14 +19,60 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class ImageComponent implements OnInit {
 
-    displayedColumns = ['id', 'environmentReference', 'imported'];
+    displayedColumns = ['title', 'environmentReference', 'origin', 'managementlayer', 'runtimetechnology', 'imported', 'actions'];
     imagesDataSource;
+    image: Image;
+    environments: Environment[];
 
-    constructor(private imageService: ImageService, public snackBar: MatSnackBar) { }
+    constructor(private imageService: ImageService, public snackBar: MatSnackBar, private environmentService: EnvironmentService) {
+        this.clear();
+    }
 
     ngOnInit(): void {
         this.imagesDataSource = new ImagesDataSource(this.imageService, this.snackBar);
+        this.environmentService.getList().then(res => {
+            this.environments = res;
+        }, error => {
+            {
+                this.snackBar.open("Server Error: " + error, "OK");
+            }
+        });        
+        
     }
+
+    store(): void {
+        this.imageService.store(this.image).
+            then(environment => {
+                this.snackBar.open("Image stored successfully", "OK", { duration: 500 });
+                this.imagesDataSource = new ImagesDataSource(this.imageService, this.snackBar);
+                this.clear();                
+            },
+            error => {
+                {
+                    this.snackBar.open("Server Error: " + error, "OK");
+                }
+            });
+    }
+
+    delete(image: Image): void {
+        this.imageService.delete(image).then(result => {
+            this.snackBar.open("Image deleted successfully", "OK", { duration: 500 });
+            this.imagesDataSource = new ImagesDataSource(this.imageService, this.snackBar);
+        },
+        error => {
+            {
+                this.snackBar.open("Server Error: " + error, "OK");
+            }
+        });
+    }
+
+    clear(): void{
+        this.image = this.imageService.getStub();
+    }
+    
+    edit(image: Image): void {
+        this.image = image;
+    }      
 }
 
 export class ImagesDataSource extends DataSource<Image> {

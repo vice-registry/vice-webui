@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Injectable } from '@angular/core';
-import { Deployment } from './models';
+import { Deployment } from './api/model/Deployment';
 import { DeploymentService } from './deployment.service';
 import 'rxjs/add/operator/toPromise';
 import { DataSource } from '@angular/cdk/collections';

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { User } from './models';
+import { User } from './api/model/User';
 import { LoginService } from './login.service';
 import { UserService } from './user.service';
 import {MatSnackBar} from '@angular/material';
@@ -22,7 +22,7 @@ export class LoginComponent {
   storeCredentials = true;
 
   loginCredentials: Credentials = new Credentials();
-  registerUser: User = new User();
+  registerUser: User;
 
   constructor(
     private loginService: LoginService,

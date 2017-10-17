@@ -3,7 +3,7 @@ import { Headers, Http } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 
-import { Runtimestats } from './models';
+import { RuntimeStats } from './api/model/RuntimeStats';
 import { SettingsService } from './settings.service';
 import { UserService } from './user.service';
 
@@ -22,7 +22,7 @@ export class RuntimestatsService {
 
     constructor(private http: Http, private settingsService: SettingsService, private userService: UserService) { }
     
-    get(): Promise<Runtimestats> {
+    get(): Promise<RuntimeStats> {
         let headers = new Headers({
             'Accept': 'application/json',
             'Authorization': 'Basic ' + this.userService.getBasicAuth()
@@ -30,7 +30,7 @@ export class RuntimestatsService {
         return this.http.get(this.settingsService.getApiurl()+'/runtimestats', {headers: headers})
                 .toPromise()
                 .then((response) => {
-                    return response.json() as Runtimestats
+                    return response.json() as RuntimeStats
                 }).catch(this.handleError);
     }
     
