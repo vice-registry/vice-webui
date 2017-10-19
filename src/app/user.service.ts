@@ -23,7 +23,14 @@ export class UserService {
   remember(): User {
     let data = JSON.parse(localStorage.getItem('user'));
     if (!data) {
-      return undefined;
+      var user: User = {
+        email: "",
+        username: "",
+        password: "",
+        fullname: "",
+        id: ""
+      };            
+      return user;
     }
 
     var user: User = {

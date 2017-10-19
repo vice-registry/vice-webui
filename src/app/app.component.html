@@ -9,14 +9,14 @@
     <span>
     <button mat-button (click)="openSettings()"><mat-icon>settings</mat-icon> Settings</button>
   </span>
-    <span *ngIf="user">
+    <span *ngIf="user.id">
     <button mat-button [matMenuTriggerFor]="menu"><img gravatar [email]="user.email" [size]="20"> {{ user.fullname }}</button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item disabled>Settings</button>
       <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
   </span>
-    <span *ngIf="!user">
+    <span *ngIf="!user.id">
     <a routerLink="/login" mat-raised-button color="accent"><mat-icon>account_circle</mat-icon> LOGIN or REGISTER</a>
   </span>
   </mat-toolbar>

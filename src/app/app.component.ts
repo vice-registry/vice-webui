@@ -34,7 +34,12 @@ export class AppComponent implements OnInit {
   }
 
   logout(): void {
-    this.user = undefined;
+    this.user = {
+      username: "",
+      password: "",
+      email: "",
+      fullname: ""
+    };
     this.userService.forget();
     this.router.navigate(['/']);
   }

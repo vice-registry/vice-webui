@@ -22,7 +22,12 @@ export class LoginComponent {
   storeCredentials = true;
 
   loginCredentials: Credentials = new Credentials();
-  registerUser: User;
+  registerUser: User = {
+    username: "",
+    password: "",
+    email: "",
+    fullname: ""
+  };
 
   constructor(
     private loginService: LoginService,
