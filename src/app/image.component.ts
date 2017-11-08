@@ -42,7 +42,7 @@ export class ImageComponent implements OnInit {
 
     store(): void {
         this.imageService.store(this.image).
-            then(environment => {
+            then(image => {
                 this.snackBar.open("Image stored successfully", "OK", { duration: 500 });
                 this.imagesDataSource = new ImagesDataSource(this.imageService, this.snackBar);
                 this.clear();                
@@ -73,6 +73,11 @@ export class ImageComponent implements OnInit {
     edit(image: Image): void {
         this.image = image;
     }      
+
+    compareEnvironments(env1: Environment, env2: Environment) {
+        return env1 && env2 && env1.id === env2.id;
+    }
+
 }
 
 export class ImagesDataSource extends DataSource<Image> {
