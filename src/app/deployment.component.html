@@ -1,9 +1,77 @@
 <mat-card>
+    <mat-card-header>
+        <mat-card-title *ngIf=!deployment.id>
+            <h3>Create Deployment</h3>
+        </mat-card-title>
+        <mat-card-title *ngIf=deployment.id>
+            <h3>Show Deployment {{deployment.title}} (ID {{deployment.id}})</h3>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form #createImageForm="ngForm">
+            <div class="formcard">
+                <div>
+                    <mat-form-field>
+                        <input matInput name="title" placeholder="Title" [(ngModel)]="deployment.title">
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <mat-select name="imageid" placeholder="Image" [(ngModel)]="deployment.imageid" [compareWith]="compareImages">
+                            <mat-option *ngFor="let image of images" [value]="image.id">
+                                {{ image.title }}
+                            </mat-option>                            
+                        </mat-select>
+                    </mat-form-field>                    
+
+                    <mat-form-field>
+                        <mat-select name="environmentId" placeholder="Target Environment" [(ngModel)]="deployment.environmentId" [compareWith]="compareEnvironments">
+                            <mat-option *ngFor="let environment of environments" [value]="environment.id">
+                                {{ environment.title }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+
+                <button mat-raised-button (click)="clear()" *ngIf=deployment.id>CLEAR</button>
+                <button mat-raised-button color="primary" (click)="store()">SUBMIT</button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
     <mat-table #table [dataSource]="deploymentDataSource">
 
-        <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef> id </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        <ng-container matColumnDef="title">
+            <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="imageid">
+            <mat-header-cell *matHeaderCellDef> Image ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.imageid}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="environmentId">
+            <mat-header-cell *matHeaderCellDef> Environment ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.environmentId}} </mat-cell>
+        </ng-container>        
+
+        <ng-container matColumnDef="environmentReference">
+            <mat-header-cell *matHeaderCellDef> Reference ID </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.environmentReference}} </mat-cell>
+        </ng-container>        
+
+        <ng-container matColumnDef="actions">
+            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-icon-button color="primary" (click)="edit(element)">
+                        <mat-icon aria-label="edit">mode_edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="delete(element)">
+                      <mat-icon aria-label="delete">delete_forever</mat-icon>
+                </button>
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
