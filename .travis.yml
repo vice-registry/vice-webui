@@ -19,5 +19,7 @@ deploy:
   api_key:
     secure: ra4Vkns1RtAcCTXMxB1qxsJjKJMJjsv4/RDJnbT/+GPkwdepKAV8PEDIaS9jnPp+CumnsY99gv+8B9Yqzf304BU0pQCo4wxNwMJrdxVXtMXA8+eFeXqQN4eKkiI1WfxSRNUsqqGqTRPIEA5d9PirxTIsxUkorD6RJXk+qISdBn/hsyA2KG+6Nlvqa2iSbCzNkNWMWGaK7G6/kkL2JmlvPEnAZG08Xfno07bVAoPj1onW/HKxcAdjEeWDf7oD/vpqr4MUr8MNOT847x75dgkwaJJ1708x3Mpflld9S4qwIc/EFY1EP/OdDcKeJTG8gzg68oJ8SfTNTm7RI1T2odyvnmGckjxmArQz/micn+al/aylxuSe+D6POzSqg3IqFLKVwEcnL50ldT4Tdk3/FbO5CTWJH4SEMzHaf8gl7x2TdDMb/8uUzDWt1MA+P49IivhFUoZG+l9pIjfN1BC7OGUGgKXXChv3qotfSr0xWZQky6hl/CII2Mb45WzwqHJjbouS2e6xFbM29vDpPpB3rso7qGMFkceGLYJO2WlyADZVqIpKKtZfNEtdzMI+rjYDXH+km2B9VDhezFRjRqQj6X984po4aMg+nE/re9DAfXKsosmNI6lqzEHhU1XWK2X6Y/JFFU8P1YauzMR2lI+Fs7062zgsvNo6USNDQt6f6LlrmwY=
   file: vice-webui.tgz
+  skip_cleanup: true
   on:
     repo: vice-registry/vice-webui
+    tags: true
