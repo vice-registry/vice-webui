@@ -10,11 +10,11 @@ html, body{
 body {
   background-color:rgba(122, 153, 172, 0.3);
 
-  background-repeat: no-repeat;
+  /*background-repeat: no-repeat;
   background-position: 50% 50%;
   background-attachment: scroll;		
   background-size: cover;
-  background-image: url('https://www.hyggl.com/background.jpg');	  
+  background-image: url('https://www.hyggl.com/background.jpg');	  */
 }
 
 
